@@ -102,17 +102,17 @@ RailsにBootstrapを実装する
         │   └── stylesheets
         └── plugins    
     
-+ Gemfile
++ Gemfileに追記
 
         gem 'sass-rails',   '~> 3.2.3'
         gem 'bootstrap-sass', '~> 3.0.2.0'
 
-+ app/assets/stylesheets/application.css.scss
++ app/assets/stylesheets/application.css.scssを作成
 
         @import "bootstrap";
         @import "bootstrap/theme";
 
-+ app/assets/javascripts/application.js
++ app/assets/javascripts/application.jsに追記
 
         // Loads all Bootstrap javascripts
         //= require bootstrap/affix
