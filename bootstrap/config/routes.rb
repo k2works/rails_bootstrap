@@ -1,4 +1,10 @@
 Bootstrap::Application.routes.draw do
+  get "navbar_static_top/index"
+
+  get "navbar_fixed_top/index"
+
+  get "navbar/index"
+
   get "jumbotron/index"
 
   # The priority is based upon order of creation:
