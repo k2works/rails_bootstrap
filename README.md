@@ -138,6 +138,23 @@ RailsにBootstrapを実装する
 ### ケース１ ###
 + Gemfile  
 
+        gem 'bootstrap-sass', '~> 3.0.2.0'
+
++ 結果  
+
+        $ rails s
+        /Users/k2works/projects/github/rails_bootstrap/bootstrap/config/application.rb:13:in `<module:Bootstrap>': uninitialized constant Bootstrap::Rails::Application (NameError)
+        from /Users/k2works/projects/github/rails_bootstrap/bootstrap/config/application.rb:12:in `<top (required)>'
+        from /Users/k2works/.rvm/gems/ruby-1.9.3-p392@rails_bootstrap/gems/railties-3.2.13/lib/rails/commands.rb:53:in `require'
+        from /Users/k2works/.rvm/gems/ruby-1.9.3-p392@rails_bootstrap/gems/railties-3.2.13/lib/rails/commands.rb:53:in `block in <top (required)>'
+        from /Users/k2works/.rvm/gems/ruby-1.9.3-p392@rails_bootstrap/gems/railties-3.2.13/lib/rails/commands.rb:50:in `tap'
+        from /Users/k2works/.rvm/gems/ruby-1.9.3-p392@rails_bootstrap/gems/railties-3.2.13/lib/rails/commands.rb:50:in `<top (required)>'
+        from script/rails:6:in `require'
+        from script/rails:6:in `<main>'
+
+### ケース２ ###
++ Gemfile  
+
         gem 'bootstrap-sass', require: false
 
 + 結果  
@@ -165,21 +182,6 @@ http://localhost:3000/blogs
         app/assets/stylesheets/application.css.scss:1
         app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3230626318338747327_70156318251140'
         app/controllers/blogs_controller.rb:7:in `index'
-
-### ケース２ ###
-+ Gemfile  
-
-        gem 'bootstrap-sass', '~> 3.0.2.0'
-
-        $ rails s
-        /Users/k2works/projects/github/rails_bootstrap/bootstrap/config/application.rb:13:in `<module:Bootstrap>': uninitialized constant Bootstrap::Rails::Application (NameError)
-        from /Users/k2works/projects/github/rails_bootstrap/bootstrap/config/application.rb:12:in `<top (required)>'
-        from /Users/k2works/.rvm/gems/ruby-1.9.3-p392@rails_bootstrap/gems/railties-3.2.13/lib/rails/commands.rb:53:in `require'
-        from /Users/k2works/.rvm/gems/ruby-1.9.3-p392@rails_bootstrap/gems/railties-3.2.13/lib/rails/commands.rb:53:in `block in <top (required)>'
-        from /Users/k2works/.rvm/gems/ruby-1.9.3-p392@rails_bootstrap/gems/railties-3.2.13/lib/rails/commands.rb:50:in `tap'
-        from /Users/k2works/.rvm/gems/ruby-1.9.3-p392@rails_bootstrap/gems/railties-3.2.13/lib/rails/commands.rb:50:in `<top (required)>'
-        from script/rails:6:in `require'
-        from script/rails:6:in `<main>'
 
 # 参照 #
 
