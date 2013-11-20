@@ -129,59 +129,103 @@ RailsにBootstrapを実装する
         //= require bootstrap/popover
 
 ## アプリケーション作成 ##
++ 不具合回避対応#1  
+  config/application.rb
 
-    $ rails g scaffold Blog blog:string
-    $ rake db:migrate
+        class Application < ::Rails::Application
 
-## 不具合現象 ##
++ サンプルページ作成
 
-### ケース１ ###
-+ Gemfile  
+        $ rails g controller jumbotron index
 
-        gem 'bootstrap-sass', '~> 3.0.2.0'
+  app/views/layouts/application.html.erb
 
-+ 結果  
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Bootstrap</title>
+          <%= stylesheet_link_tag    "application", :media => "all" %>
+          <%= javascript_include_tag "application" %>
+          <%= csrf_meta_tags %>
+        </head>
 
-        $ rails s
-        /Users/k2works/projects/github/rails_bootstrap/bootstrap/config/application.rb:13:in `<module:Bootstrap>': uninitialized constant Bootstrap::Rails::Application (NameError)
-        from /Users/k2works/projects/github/rails_bootstrap/bootstrap/config/application.rb:12:in `<top (required)>'
-        from /Users/k2works/.rvm/gems/ruby-1.9.3-p392@rails_bootstrap/gems/railties-3.2.13/lib/rails/commands.rb:53:in `require'
-        from /Users/k2works/.rvm/gems/ruby-1.9.3-p392@rails_bootstrap/gems/railties-3.2.13/lib/rails/commands.rb:53:in `block in <top (required)>'
-        from /Users/k2works/.rvm/gems/ruby-1.9.3-p392@rails_bootstrap/gems/railties-3.2.13/lib/rails/commands.rb:50:in `tap'
-        from /Users/k2works/.rvm/gems/ruby-1.9.3-p392@rails_bootstrap/gems/railties-3.2.13/lib/rails/commands.rb:50:in `<top (required)>'
-        from script/rails:6:in `require'
-        from script/rails:6:in `<main>'
+        <body class="<%= controller_name %>">
+  
+        <%= yield %>
 
-### ケース２ ###
-+ Gemfile  
+        </body>
+        </html>        
 
-        gem 'bootstrap-sass', require: false
+  app/views/jumbotron/index.html.erb
 
-+ 結果  
-http://localhost:3000/blogs
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">Project name</a>
+            </div>
+            <div class="navbar-collapse collapse">
+              <form class="navbar-form navbar-right">
+                <div class="form-group">
+                  <input type="text" placeholder="Email" class="form-control">
+                </div>
+                <div class="form-group">
+                  <input type="password" placeholder="Password" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-success">Sign in</button>
+              </form>
+            </div><!--/.navbar-collapse -->
+          </div>
+        </div>
 
-        Sass::SyntaxError in Blogs#index
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+          <div class="container">
+            <h1>Hello, world!</h1>
+            <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+            <p><a class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
+          </div>
+        </div>
 
-        Showing /Users/k2works/projects/github/rails_bootstrap/bootstrap/app/views/layouts/application.html.erb where line #5 raised:
+        <div class="container">
+          <!-- Example row of columns -->
+          <div class="row">
+            <div class="col-md-4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div>
+            <div class="col-md-4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div>
+            <div class="col-md-4">
+              <h2>Heading</h2>
+              <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div>
+          </div>
 
-        File to import not found or unreadable: bootstrap.
-        Load path: Sass::Rails::Importer(/Users/k2works/projects/github/rails_bootstrap/bootstrap/app/assets/stylesheets/application.css.scss)
-        (in /Users/k2works/projects/github/rails_bootstrap/bootstrap/app/assets/stylesheets/application.css.scss)
-        Extracted source (around line #5):
+          <hr>
 
-        2: <html>
-        3: <head>
-        4:   <title>Bootstrap</title>
-        5:   <%= stylesheet_link_tag    "application", :media => "all" %>
-        6:   <%= javascript_include_tag "application" %>
-        7:   <%= csrf_meta_tags %>
-        8: </head>
-        Rails.root: /Users/k2works/projects/github/rails_bootstrap/bootstrap
+          <footer>
+            <p>&copy; Company 2013</p>
+          </footer>
+        </div> <!-- /container -->
 
-        Application Trace | Framework Trace | Full Trace
-        app/assets/stylesheets/application.css.scss:1
-        app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3230626318338747327_70156318251140'
-        app/controllers/blogs_controller.rb:7:in `index'
+  app/assets/stylesheets/jumbotron.css.scss
+
+        /* Move down content because we have a fixed navbar that is 50px tall */
+        body {
+          padding-top: 50px;
+          padding-bottom: 20px;
+        }
 
 # 参照 #
 
