@@ -129,7 +129,7 @@ RailsにBootstrapを実装する
         //= require bootstrap/popover
 
 ## アプリケーション作成 ##
-+ 不具合回避対応#1  
++ [不具合回避対応#1](https://github.com/k2works/rails_bootstrap/issues/1)  
   config/application.rb
 
         class Application < ::Rails::Application
